@@ -5,94 +5,91 @@
   <title>ゐうてみ　ゐどころ　簡易ツイート用</title>
 
   <style>
- body {
-    text-align: center; 
-    margin-top: 50px; 
-  }
-  a {
-    text-decoration: none;
-  }
-  button {
-    padding: 10px 20px;
-    margin: 50px;
-    font-size: 16px;
-  }
-
-
-  a {
-    text-decoration: none;
-  }
-  button {
-    padding: 10px 20px;
-    margin: 50px;
-    font-size: 16px;
-    border-radius: 50px;
-    background-color: #1da1f2; 
-    color: white;
-    border: none;
-    cursor: pointer;
-  }
-  button:hover {
-    background-color: #0d8ddb;
-  }
-
-    a {
-      text-decoration: none; 
+    body {
+      text-align: center;
+      margin-top: 50px;
+    }
+    button {
+      padding: 10px 20px;
+      margin: 50px;
+      font-size: 16px;
+      border-radius: 50px;
+      background-color: #1da1f2;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0d8ddb;
     }
   </style>
 </head>
 
- <h1>ツイート用ボタン</h1> 
-  <p>※ゐうてみTwitterにログインした状態にてボタンを押してください。</p>
-
-<br>
-<p>開所</p>
-
-
 <body>
 
+  <h1>ツイート用ボタン</h1>
+  <p>※ゐうてみTwitterにログインした状態にてボタンを押してください。</p>
 
-  <a href="https://twitter.com/intent/tweet?text=ゐどころ開所しました！
-%0A参加する方は以下ををご確認ください。
-%0A注意事項
-%0A・雑談テーマは「VRC上での人間関係」に関する話題です。
-%0A・開催時間 22:00～23:00(途中参加/退出OK)
+  <br>
+  <p>開所</p>
 
-%0A参加方法 _セカンド_ へフレンド申請後、時間になりましたらJoinでご参加ください！
-https://vrchat.com/home/user/usr_d7a5c6a4-2d9e-4845-afec-f81fb8d47bd0
-　" target="_blank">
-    <button>ゐどころ開所<br>(IL:ｾｶﾝﾄﾞ)</button>
-  </a>
+  <button onclick="tweetAndNotifyDiscord(
+    `ゐどころ開所しました！
+参加する方は以下をご確認ください。
+注意事項
+・雑談テーマは「VRC上での人間関係」に関する話題です。
+・開催時間 22:00～23:00(途中参加/退出OK)
 
-  <a href="https://twitter.com/intent/tweet?text=ゐどころ開所しました！
-%0A参加する方は以下ををご確認ください。
-%0A注意事項
-%0A・雑談テーマは「VRC上での人間関係」に関する話題です。
-%0A・開催時間 22:00～23:00(途中参加/退出OK)
+参加方法 _セカンド_ へフレンド申請後、時間になりましたらJoinでご参加ください！
+https://vrchat.com/home/user/usr_d7a5c6a4-2d9e-4845-afec-f81fb8d47bd0`,
+    '【Discord通知】ゐどころ開所（IL: セカンド）'
+  )">ゐどころ開所<br>(IL:ｾｶﾝﾄﾞ)</button>
 
-%0A参加方法 ジュン -Jun- へフレンド申請後、時間になりましたらJoinでご参加ください！
-https://vrchat.com/home/user/usr_be6aa528-2660-40ba-b637-6ffcb6da67be
-　" target="_blank">
-    <button>ゐどころ開所<br>(IL:ｼﾞｭﾝ)</button>
-  </a>
+  <button onclick="tweetAndNotifyDiscord(
+    `ゐどころ開所しました！
+参加する方は以下をご確認ください。
+注意事項
+・雑談テーマは「VRC上での人間関係」に関する話題です。
+・開催時間 22:00～23:00(途中参加/退出OK)
 
+参加方法 ジュン -Jun- へフレンド申請後、時間になりましたらJoinでご参加ください！
+https://vrchat.com/home/user/usr_be6aa528-2660-40ba-b637-6ffcb6da67be`,
+    '【Discord通知】ゐどころ開所（IL: ジュン）'
+  )">ゐどころ開所<br>(IL:ｼﾞｭﾝ)</button>
 
- <p>閉所</p>
+  <p>閉所</p>
 
-  <a href="https://twitter.com/intent/tweet?text=ゐどころ閉所いたしました！
-%0Aご参加いただいた方ありがとうございました🙇‍♂️" target="_blank">
-    <button>ゐどころ閉所</button>
-  </a>
+  <button onclick="tweetAndNotifyDiscord(
+    `ゐどころ閉所いたしました！
+ご参加いただいた方ありがとうございました🙇‍♂️`,
+    '【Discord通知】ゐどころ閉所しました！'
+  )">ゐどころ閉所</button>
 
+  <script>
+    function tweetAndNotifyDiscord(tweetText, discordMessage) {
+      // Twitter intent を開く
+      const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}`;
+      window.open(twitterUrl, '_blank');
 
+      // Discord Webhook URL（←ここを自分のに置き換えてください）
+      const webhookUrl = 'https://discord.com/api/webhooks/1367442490344603721/w7iPtmM93o2zQKbpnWnrFoHJaChGIjsMYj4Yofk1At7swRSfSswJd2qlDnJnK1gEsy4C';
 
+      fetch(webhookUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ content: discordMessage })
+      })
+      .then(response => {
+        if (response.ok) {
+          console.log("Discord通知成功");
+        } else {
+          console.error("Discord通知失敗");
+        }
+      });
+    }
+  </script>
 
 </body>
-
-
-
-
-
 </html>
-
-
