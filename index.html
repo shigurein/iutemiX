@@ -31,7 +31,7 @@
     .promo-buttons {
       display: flex;
       justify-content: center;
-      gap: 20px; /* ボタン間の隙間 */
+      gap: 40px; /* ボタン間の隙間を広げる */
     }
 
     .promo-buttons button {
@@ -60,4 +60,118 @@
       `ゐどころ開所しました！
 参加する方は以下をご確認ください。
 注意事項
-・雑談テーマは「VRC上での人間関係」に関する話題です
+・雑談テーマは「VRC上での人間関係」に関する話題です。
+・開催時間 22:00～23:00(途中参加/退出OK)
+
+参加方法 _セカンド_ へフレンド申請後、時間になりましたらJoinでご参加ください！
+https://vrchat.com/home/user/usr_d7a5c6a4-2d9e-4845-afec-f81fb8d47bd0`,
+      '【Discord通知】ゐどころ開所（IL: セカンド）'
+    )">ゐどころ開所<br>(IL:ｾｶﾝﾄﾞ)</button>
+
+    <button onclick="tweetAndNotifyDiscord(
+      `ゐどころ開所しました！
+参加する方は以下をご確認ください。
+注意事項
+・雑談テーマは「VRC上での人間関係」に関する話題です。
+・開催時間 22:00～23:00(途中参加/退出OK)
+
+参加方法 ジュン -Jun- へフレンド申請後、時間になりましたらJoinでご参加ください！
+https://vrchat.com/home/user/usr_be6aa528-2660-40ba-b637-6ffcb6da67be`,
+      '【Discord通知】ゐどころ開所（IL: ジュン）'
+    )">ゐどころ開所<br>(IL:ｼﾞｭﾝ)</button>
+
+    <button onclick="tweetAndNotifyDiscord(
+      `ゐどころ閉所いたしました！
+ご参加いただいた方ありがとうございました🙇‍♂️`,
+      '【Discord通知】ゐどころ閉所しました！'
+    )">ゐどころ閉所</button>
+  </div>
+
+  <br>
+  <p>ゐどころ前日宣伝ツイート</p>
+
+  <!-- 宣伝用のボタンを中央に並べる -->
+  <div class="promo-buttons">
+    <button onclick="tweetSaturdayPromoSecond()">ゐどころ宣伝<br>(IL:ｾｶﾝﾄﾞ)</button>
+    <button onclick="tweetSaturdayPromoJun()">ゐどころ宣伝<br>(IL:ｼﾞｭﾝ)</button>
+  </div>
+
+  <script>
+    function tweetAndNotifyDiscord(tweetText, discordMessage) {
+      const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}`;
+      window.open(twitterUrl, '_blank');
+
+      const webhookUrl = 'https://discord.com/api/webhooks/1367442490344603721/w7iPtmM93o2zQKbpnWnrFoHJaChGIjsMYj4Yofk1At7swRSfSswJd2qlDnJnK1gEsy4C';
+
+      fetch(webhookUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ content: discordMessage })
+      })
+      .then(response => {
+        if (response.ok) {
+          console.log("Discord通知成功");
+        } else {
+          console.error("Discord通知失敗");
+        }
+      });
+    }
+
+    function getThisSaturdayDateFormatted() {
+      const today = new Date();
+      const dayOfWeek = today.getDay();
+      const saturday = new Date(today);
+      saturday.setDate(today.getDate() + (6 - dayOfWeek));
+      const year = saturday.getFullYear();
+      const month = saturday.getMonth() + 1;
+      const date = saturday.getDate();
+      return `${year}年${month}月${date}日`;
+    }
+
+    function tweetSaturdayPromoSecond() {
+      const saturdayStr = getThisSaturdayDateFormatted();
+      const tweetText = `
+今週の土曜日（${saturdayStr}）は「ゐどころ」を開所予定です！
+
+▼テーマ
+VRC上での人間関係について話す場です。
+
+▼開催時間
+22:00〜23:00（途中参加・退出OK）
+
+▼参加方法
+「_セカンド_」 にフレンド申請し、時間になったらJoin！
+
+お気軽にご参加ください。`;
+
+      const discordMessage = `【Discord通知】今週土曜（${saturdayStr}）のゐどころ宣伝ツイート完了しました。(IL:ｾｶﾝﾄﾞ)`;
+
+      tweetAndNotifyDiscord(tweetText, discordMessage);
+    }
+
+    function tweetSaturdayPromoJun() {
+      const saturdayStr = getThisSaturdayDateFormatted();
+      const tweetText = `
+今週の土曜日（${saturdayStr}）は「ゐどころ」を開所予定です！
+
+▼テーマ
+VRC上での人間関係について話す場です。
+
+▼開催時間
+22:00〜23:00（途中参加・退出OK）
+
+▼参加方法
+「ジュン -Jun-」 にフレンド申請し、時間になったらJoin！
+
+お気軽にご参加ください。`;
+
+      const discordMessage = `【Discord通知】今週土曜（${saturdayStr}）のゐどころ宣伝ツイート完了しました。(IL:ｼﾞｭﾝ)`;
+
+      tweetAndNotifyDiscord(tweetText, discordMessage);
+    }
+  </script>
+
+</body>
+</html>
