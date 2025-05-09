@@ -20,7 +20,7 @@
       border: none;
       cursor: pointer;
       white-space: pre-line;
-      width: 300px; /* ボタンの幅を固定 */
+      width: 300px; /* 幅を固定 */
     }
 
     button:hover {
@@ -30,19 +30,12 @@
     /* 宣伝ボタンを左右に並べる */
     .promo-buttons {
       display: flex;
-      
-      gap: 40px; /* ボタン間の隙間を広げる */
+      justify-content: center;
+      gap: 20px; /* ボタン間の隙間 */
     }
 
     .promo-buttons button {
       margin: 0; /* ボタン間の余白をなくす */
-    }
-
-    /* その他のボタンの配置 */
-    .main-buttons {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
     }
   </style>
 </head>
@@ -55,9 +48,8 @@
   <br>
   <p>開所</p>
 
-  <div class="main-buttons">
-    <button onclick="tweetAndNotifyDiscord(
-      `ゐどころ開所しました！
+  <button onclick="tweetAndNotifyDiscord(
+    `ゐどころ開所しました！
 参加する方は以下をご確認ください。
 注意事項
 ・雑談テーマは「VRC上での人間関係」に関する話題です。
@@ -65,11 +57,11 @@
 
 参加方法 _セカンド_ へフレンド申請後、時間になりましたらJoinでご参加ください！
 https://vrchat.com/home/user/usr_d7a5c6a4-2d9e-4845-afec-f81fb8d47bd0`,
-      '【Discord通知】ゐどころ開所（IL: セカンド）'
-    )">ゐどころ開所<br>(IL:ｾｶﾝﾄﾞ)</button>
+    '【Discord通知】ゐどころ開所（IL: セカンド）'
+  )">ゐどころ開所<br>(IL:ｾｶﾝﾄﾞ)</button>
 
-    <button onclick="tweetAndNotifyDiscord(
-      `ゐどころ開所しました！
+  <button onclick="tweetAndNotifyDiscord(
+    `ゐどころ開所しました！
 参加する方は以下をご確認ください。
 注意事項
 ・雑談テーマは「VRC上での人間関係」に関する話題です。
@@ -77,15 +69,16 @@ https://vrchat.com/home/user/usr_d7a5c6a4-2d9e-4845-afec-f81fb8d47bd0`,
 
 参加方法 ジュン -Jun- へフレンド申請後、時間になりましたらJoinでご参加ください！
 https://vrchat.com/home/user/usr_be6aa528-2660-40ba-b637-6ffcb6da67be`,
-      '【Discord通知】ゐどころ開所（IL: ジュン）'
-    )">ゐどころ開所<br>(IL:ｼﾞｭﾝ)</button>
+    '【Discord通知】ゐどころ開所（IL: ジュン）'
+  )">ゐどころ開所<br>(IL:ｼﾞｭﾝ)</button>
 
-    <button onclick="tweetAndNotifyDiscord(
-      `ゐどころ閉所いたしました！
+  <p>閉所</p>
+
+  <button onclick="tweetAndNotifyDiscord(
+    `ゐどころ閉所いたしました！
 ご参加いただいた方ありがとうございました🙇‍♂️`,
-      '【Discord通知】ゐどころ閉所しました！'
-    )">ゐどころ閉所</button>
-  </div>
+    '【Discord通知】ゐどころ閉所しました！'
+  )">ゐどころ閉所</button>
 
   <br>
   <p>ゐどころ前日宣伝ツイート</p>
