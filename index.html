@@ -25,7 +25,7 @@
       border: none;
       cursor: pointer;
       width: 200px;
-      white-space: pre-line; /* 改行を反映 */
+      white-space: pre-line; /* 改行対応 */
     }
     button:hover {
       background-color: #0d8ddb;
@@ -50,70 +50,4 @@
 
 参加方法 _セカンド_ へフレンド申請後、時間になりましたらJoinでご参加ください！
 https://vrchat.com/home/user/usr_d7a5c6a4-2d9e-4845-afec-f81fb8d47bd0`,
-    '【Discord通知】ゐどころ開所（IL: セカンド）'
-  )">ゐどころ開所<br>(IL:ｾｶﾝﾄﾞ)</button>
-
-  <button onclick="tweetAndNotifyDiscord(
-    `ゐどころ開所しました！
-参加する方は以下をご確認ください。
-注意事項
-・雑談テーマは「VRC上での人間関係」に関する話題です。
-・開催時間 22:00～23:00(途中参加/退出OK)
-
-参加方法 ジュン -Jun- へフレンド申請後、時間になりましたらJoinでご参加ください！
-https://vrchat.com/home/user/usr_be6aa528-2660-40ba-b637-6ffcb6da67be`,
-    '【Discord通知】ゐどころ開所（IL: ジュン）'
-  )">ゐどころ開所<br>(IL:ｼﾞｭﾝ)</button>
-
-  <p>閉所</p>
-
-  <button onclick="tweetAndNotifyDiscord(
-    `ゐどころ閉所いたしました！
-ご参加いただいた方ありがとうございました🙇‍♂️`,
-    '【Discord通知】ゐどころ閉所しました！'
-  )">ゐどころ閉所</button>
-
-  <br>
-  <p>ゐどころ前日宣伝ツイート</p>
-
-  <!-- ✅ 左右に並べる宣伝ボタン -->
-  <div class="button-container">
-    <button onclick="tweetSaturdayPromo('セカンド')">ゐどころ宣伝用<br>(IL:ｾｶﾝﾄﾞ)</button>
-    <button onclick="tweetSaturdayPromo('ジュン')">ゐどころ宣伝用<br>(IL:ｼﾞｭﾝ)</button>
-  </div>
-
-  <script>
-    function tweetAndNotifyDiscord(tweetText, discordMessage) {
-      const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}`;
-      window.open(twitterUrl, '_blank');
-
-      const webhookUrl = 'https://discord.com/api/webhooks/1367442490344603721/w7iPtmM93o2zQKbpnWnrFoHJaChGIjsMYj4Yofk1At7swRSfSswJd2qlDnJnK1gEsy4C';
-
-      fetch(webhookUrl, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ content: discordMessage })
-      })
-      .then(response => {
-        if (response.ok) {
-          console.log("Discord通知成功");
-        } else {
-          console.error("Discord通知失敗");
-        }
-      });
-    }
-
-    function getThisSaturdayDateFormatted() {
-      const today = new Date();
-      const dayOfWeek = today.getDay();
-      const saturday = new Date(today);
-      saturday.setDate(today.getDate() + (6 - dayOfWeek));
-      const year = saturday.getFullYear();
-      const month = saturday.getMonth() + 1;
-      const date = saturday.getDate();
-      return `${year}年${month}月${date}日`;
-    }
-
-    function tweetSaturdayPromo(ilName
+    '【Discord通知】ゐどころ開所（IL: セカンド）
