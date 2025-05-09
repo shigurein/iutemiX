@@ -82,8 +82,8 @@ https://vrchat.com/home/user/usr_be6aa528-2660-40ba-b637-6ffcb6da67be`,
   <p>ゐどころ前日宣伝ツイート</p>
 
   <div class="promo-buttons">
-    <button onclick="tweetSaturdayPromo('セカンド')">ゐどころ宣伝用<br>(IL:ｾｶﾝﾄﾞ)</button>
-    <button onclick="tweetSaturdayPromo('ジュン')">ゐどころ宣伝用<br>(IL:ｼﾞｭﾝ)</button>
+    <button onclick="tweetSaturdayPromoSecond()">ゐどころ宣伝用<br>(IL:ｾｶﾝﾄﾞ)</button>
+    <button onclick="tweetSaturdayPromoJun()">ゐどころ宣伝用<br>(IL:ｼﾞｭﾝ)</button>
   </div>
 
   <script>
@@ -120,10 +120,10 @@ https://vrchat.com/home/user/usr_be6aa528-2660-40ba-b637-6ffcb6da67be`,
       return `${year}年${month}月${date}日`;
     }
 
-    function tweetSaturdayPromo(ilName) {
+    function tweetSaturdayPromoSecond() {
       const saturdayStr = getThisSaturdayDateFormatted();
       const tweetText = `【今週のゐどころ告知】
-今週の土曜日（${saturdayStr}）は「ゐどころ」を開所予定です！
+今週の土曜日（${saturdayStr}）は「ゐどころ」を開所予定です！（IL: セカンド）
 
 ▼テーマ
 VRC上での人間関係について話す場です。
@@ -132,11 +132,32 @@ VRC上での人間関係について話す場です。
 22:00〜23:00（途中参加・退出OK）
 
 ▼参加方法
-${ilName} へフレンド申請後、時間になったらJoin！
+_セカンド_ にフレンド申請し、時間になったらJoin！
 
 初参加の方も歓迎！お気軽にご参加ください🙌`;
 
-      const discordMessage = `【Discord通知】今週土曜（${saturdayStr}）はゐどころ開所予定（IL: ${ilName}）です！`;
+      const discordMessage = `【Discord通知】今週土曜（${saturdayStr}）はゐどころ開所予定（IL: セカンド）です！`;
+
+      tweetAndNotifyDiscord(tweetText, discordMessage);
+    }
+
+    function tweetSaturdayPromoJun() {
+      const saturdayStr = getThisSaturdayDateFormatted();
+      const tweetText = `【今週のゐどころ告知】
+今週の土曜日（${saturdayStr}）は「ゐどころ」を開所予定です！（IL: ジュン）
+
+▼テーマ
+VRC上での人間関係について話す場です。
+
+▼開催時間
+22:00〜23:00（途中参加・退出OK）
+
+▼参加方法
+ジュン -Jun- にフレンド申請し、時間になったらJoin！
+
+初参加の方も歓迎！お気軽にご参加ください🙌`;
+
+      const discordMessage = `【Discord通知】今週土曜（${saturdayStr}）はゐどころ開所予定（IL: ジュン）です！`;
 
       tweetAndNotifyDiscord(tweetText, discordMessage);
     }
