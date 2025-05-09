@@ -65,13 +65,15 @@ https://vrchat.com/home/user/usr_be6aa528-2660-40ba-b637-6ffcb6da67be`,
     '【Discord通知】ゐどころ閉所しました！'
   )">ゐどころ閉所</button>
 
+  <br><br>
+  <p>ゐどころ前日宣伝ツイート</p>
+  <button onclick="tweetSaturdayPromo()">ゐどころ前日宣伝用</button>
+
   <script>
     function tweetAndNotifyDiscord(tweetText, discordMessage) {
-      // Twitter intent を開く
       const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}`;
       window.open(twitterUrl, '_blank');
 
-      // Discord Webhook URL（←ここを自分のに置き換えてください）
       const webhookUrl = 'https://discord.com/api/webhooks/1367442490344603721/w7iPtmM93o2zQKbpnWnrFoHJaChGIjsMYj4Yofk1At7swRSfSswJd2qlDnJnK1gEsy4C';
 
       fetch(webhookUrl, {
@@ -88,6 +90,38 @@ https://vrchat.com/home/user/usr_be6aa528-2660-40ba-b637-6ffcb6da67be`,
           console.error("Discord通知失敗");
         }
       });
+    }
+
+    function getThisSaturdayDateFormatted() {
+      const today = new Date();
+      const dayOfWeek = today.getDay(); // 0:日〜6:土
+      const daysUntilSaturday = 6 - dayOfWeek;
+      const saturday = new Date(today);
+      saturday.setDate(today.getDate() + daysUntilSaturday);
+
+      const year = saturday.getFullYear();
+      const month = saturday.getMonth() + 1;
+      const date = saturday.getDate();
+      return `${year}年${month}月${date}日`;
+    }
+
+    function tweetSaturdayPromo() {
+      const saturdayStr = getThisSaturdayDateFormatted();
+
+      const tweetText = `
+今週の土曜日（${saturdayStr}）は「ゐどころ」を開所予定です！
+
+▼テーマ
+VRC上での人間関係について話す場です。
+
+▼開催時間
+22:00〜23:00（途中参加・退出OK）
+
+初参加の方も歓迎！お気軽にご参加ください。`;
+
+      const discordMessage = `【Discord通知】宣伝ツイートしました！`;
+
+      tweetAndNotifyDiscord(tweetText, discordMessage);
     }
   </script>
 
