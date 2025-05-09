@@ -12,6 +12,7 @@
 
     button {
       padding: 10px 20px;
+      margin: 50px;
       font-size: 16px;
       border-radius: 50px;
       background-color: #1da1f2;
@@ -19,20 +20,21 @@
       border: none;
       cursor: pointer;
       white-space: pre-line;
-      width: 300px; /* ボタンの幅を固定 */
-      height: 60px; /* ボタンの高さを固定 */
-      margin: 20px; /* ボタン間の余白 */
     }
 
     button:hover {
       background-color: #0d8ddb;
     }
 
-    /* promo-buttons のスタイル */
+    /* 宣伝ボタンを左右に並べる */
     .promo-buttons {
       display: flex;
       justify-content: center;
-      margin: 50px 0;
+      gap: 20px; /* ボタン間の隙間 */
+    }
+
+    .promo-buttons button {
+      margin: 0; /* ボタン間の余白をなくす */
     }
   </style>
 </head>
@@ -80,7 +82,7 @@ https://vrchat.com/home/user/usr_be6aa528-2660-40ba-b637-6ffcb6da67be`,
   <br>
   <p>ゐどころ前日宣伝ツイート</p>
 
-  <!-- 宣伝用のボタンを中央に配置 -->
+  <!-- 宣伝用のボタンを中央に並べる -->
   <div class="promo-buttons">
     <button onclick="tweetSaturdayPromoSecond()">ゐどころ宣伝<br>(IL:ｾｶﾝﾄﾞ)</button>
     <button onclick="tweetSaturdayPromoJun()">ゐどころ宣伝<br>(IL:ｼﾞｭﾝ)</button>
@@ -138,30 +140,4 @@ VRC上での人間関係について話す場です。
 
       const discordMessage = `【Discord通知】今週土曜（${saturdayStr}）のゐどころ宣伝ツイート完了しました。(IL:ｾｶﾝﾄﾞ)`;
 
-      tweetAndNotifyDiscord(tweetText, discordMessage);
-    }
-
-    function tweetSaturdayPromoJun() {
-      const saturdayStr = getThisSaturdayDateFormatted();
-      const tweetText = `
-今週の土曜日（${saturdayStr}）は「ゐどころ」を開所予定です！
-
-▼テーマ
-VRC上での人間関係について話す場です。
-
-▼開催時間
-22:00〜23:00（途中参加・退出OK）
-
-▼参加方法
-「ジュン -Jun-」 にフレンド申請し、時間になったらJoin！
-
-お気軽にご参加ください。`;
-
-      const discordMessage = `【Discord通知】今週土曜（${saturdayStr}）のゐどころ宣伝ツイート完了しました。(IL:ｼﾞｭﾝ)`;
-
-      tweetAndNotifyDiscord(tweetText, discordMessage);
-    }
-  </script>
-
-</body>  
-</html>
+      tweetAndNotifyDiscord
