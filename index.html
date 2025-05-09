@@ -9,15 +9,23 @@
       text-align: center;
       margin-top: 50px;
     }
+    .button-container {
+      display: flex;
+      justify-content: center;
+      gap: 50px;
+      margin: 40px 0;
+      flex-wrap: wrap;
+    }
     button {
       padding: 10px 20px;
-      margin: 50px;
       font-size: 16px;
       border-radius: 50px;
       background-color: #1da1f2;
       color: white;
       border: none;
       cursor: pointer;
+      width: 200px;
+      white-space: pre-line; /* 改行を反映 */
     }
     button:hover {
       background-color: #0d8ddb;
@@ -68,8 +76,11 @@ https://vrchat.com/home/user/usr_be6aa528-2660-40ba-b637-6ffcb6da67be`,
   <br>
   <p>ゐどころ前日宣伝ツイート</p>
 
-  <!-- ✅ 追加されたボタン -->
-  <button onclick="tweetSaturdayPromo()">ゐどころ前日宣伝用</button>
+  <!-- ✅ 左右に並べる宣伝ボタン -->
+  <div class="button-container">
+    <button onclick="tweetSaturdayPromo('セカンド')">ゐどころ宣伝用<br>(IL:ｾｶﾝﾄﾞ)</button>
+    <button onclick="tweetSaturdayPromo('ジュン')">ゐどころ宣伝用<br>(IL:ｼﾞｭﾝ)</button>
+  </div>
 
   <script>
     function tweetAndNotifyDiscord(tweetText, discordMessage) {
@@ -96,36 +107,13 @@ https://vrchat.com/home/user/usr_be6aa528-2660-40ba-b637-6ffcb6da67be`,
 
     function getThisSaturdayDateFormatted() {
       const today = new Date();
-      const dayOfWeek = today.getDay(); // 0:日〜6:土
-      const daysUntilSaturday = 6 - dayOfWeek;
+      const dayOfWeek = today.getDay();
       const saturday = new Date(today);
-      saturday.setDate(today.getDate() + daysUntilSaturday);
-
+      saturday.setDate(today.getDate() + (6 - dayOfWeek));
       const year = saturday.getFullYear();
       const month = saturday.getMonth() + 1;
       const date = saturday.getDate();
       return `${year}年${month}月${date}日`;
     }
 
-    function tweetSaturdayPromo() {
-      const saturdayStr = getThisSaturdayDateFormatted();
-
-      const tweetText = `
-今週の土曜日（${saturdayStr}）は「ゐどころ」を開所予定です！
-
-▼テーマ
-VRC上での人間関係について話す場です。
-
-▼開催時間
-22:00〜23:00（途中参加・退出OK）
-
-初参加の方も歓迎！お気軽にご参加ください。`;
-
-      const discordMessage = `【Discord通知】（${saturdayStr}）分のゐどころ宣伝ツイートしました。`;
-
-      tweetAndNotifyDiscord(tweetText, discordMessage);
-    }
-  </script>
-
-</body>
-</html>
+    function tweetSaturdayPromo(ilName
