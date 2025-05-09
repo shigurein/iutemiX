@@ -65,8 +65,10 @@ https://vrchat.com/home/user/usr_be6aa528-2660-40ba-b637-6ffcb6da67be`,
     '【Discord通知】ゐどころ閉所しました！'
   )">ゐどころ閉所</button>
 
-  <br><br>
+  <br>
   <p>ゐどころ前日宣伝ツイート</p>
+
+  <!-- ✅ 追加されたボタン -->
   <button onclick="tweetSaturdayPromo()">ゐどころ前日宣伝用</button>
 
   <script>
@@ -119,7 +121,7 @@ VRC上での人間関係について話す場です。
 
 初参加の方も歓迎！お気軽にご参加ください。`;
 
-      const discordMessage = `【Discord通知】宣伝ツイートしました！`;
+      const discordMessage = `【Discord通知】（${saturdayStr}）分のゐどころ宣伝ツイートしました。`;
 
       tweetAndNotifyDiscord(tweetText, discordMessage);
     }
